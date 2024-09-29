@@ -27,7 +27,7 @@ class NominationController extends Controller
         $invoice = Invoice::get()->unique('name');
         $theme = Theme::findOrFail(1);
         return view('nomination.index', [
-            'form_type' =>'store',
+            'form_type' => 'store',
             'invoices' => $invoice,
             'theme' => $theme,
         ]);
@@ -58,6 +58,7 @@ class NominationController extends Controller
             'designation' => 'required',
             'organization' => 'required',
             'address' => 'required',
+            'course' => 'required',
             // 'member_name' => 'required',
             // 'member_designation' => 'required',
             // 'member_organization' => 'required',
@@ -68,66 +69,68 @@ class NominationController extends Controller
 
 
         $members = [];
-if($request->member_name){
-    for ($i = 0; $i < count($request->member_name); $i++) {
-        array_push($members, [
-            'member_name' => $request->member_name[$i],
-            'member_designation' => $request->member_designation[$i],
-            'member_organization' => $request->member_organization[$i],
-            'member_contact' => $request->member_contact[$i],
-            'member_email' => $request->member_email[$i],
-            'members' => json_encode($members),
-        ]);
-    }
-}
+        if ($request->member_name) {
+            for ($i = 0; $i < count($request->member_name); $i++) {
+                array_push($members, [
+                    'member_name' => $request->member_name[$i],
+                    'member_designation' => $request->member_designation[$i],
+                    'member_organization' => $request->member_organization[$i],
+                    'member_contact' => $request->member_contact[$i],
+                    'member_email' => $request->member_email[$i],
+                    'members' => json_encode($members),
+                ]);
+            }
+        }
 
 
         $ukey = time() . rand(100, 999);
 
-            Nomination::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'uid' => '',
-                'ukey' => $ukey,
-                'designation' => $request->designation,
-                'organization' => $request->organization,
-                'address' => $request->address,
-                'members' => json_encode($members),
+        Nomination::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'uid' => '',
+            'ukey' => $ukey,
+            'designation' => $request->designation,
+            'organization' => $request->organization,
+            'address' => $request->address,
+            'course' => $request->course,
+            'members' => json_encode($members),
 
-            ]);
-            $user_data = [
-                'name' => $request->name,
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'ukey' => $ukey,
-                'organization' => $request->organization,
-                'all_members' => json_encode($members),
-            ];
-            // Mail::to($request->email)->send(new NominationSubmitMail($data));
-            // $user_data->notify(new PaymentNotification($user_data));
-            Mail::to($request->email)->send(new MakePaymentMail($user_data));
+        ]);
+        $user_data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'ukey' => $ukey,
+            'organization' => $request->organization,
+            'course' => $request->course,
+            'all_members' => json_encode($members),
+        ];
+        // Mail::to($request->email)->send(new NominationSubmitMail($data));
+        // $user_data->notify(new PaymentNotification($user_data));
+        Mail::to($request->email)->send(new MakePaymentMail($user_data));
 
-            // $mail = new MakePaymentMail($user_data);
-            // $mail->replyTo('abir@bangladeshbrandforum.com', 'Abir Zaman');
-            // Mail::to($request->email)->send($mail);
-            return redirect()->route('form.hosted', $ukey);
-
+        // $mail = new MakePaymentMail($user_data);
+        // $mail->replyTo('abir@bangladeshbrandforum.com', 'Abir Zaman');
+        // Mail::to($request->email)->send($mail);
+        return redirect()->route('form.hosted', $ukey);
     }
 
     public function updateinfo(Request $request, $id)
     {
         $update_date = Nomination::findOrFail($id);
         $update_date->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'designation' => $request->designation,
-                'organization' => $request->organization,
-                'address' => $request->address,
-            ]);
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'designation' => $request->designation,
+            'organization' => $request->organization,
+            'address' => $request->address,
+            'course' => $request->course,
+        ]);
 
-            return redirect()->route('dashboard.index')->with('success', 'Nomination Updated');
+        return redirect()->route('dashboard.index')->with('success', 'Nomination Updated');
     }
 
     /**
@@ -149,11 +152,11 @@ if($request->member_name){
      */
     public function edit($id)
     {
-        $nomination= Nomination::findOrFail($id);
+        $nomination = Nomination::findOrFail($id);
         $invoice = Invoice::get()->unique('name');
         $theme = Theme::findOrFail(1);
-        return view('nomination.index',[
-            'form_type' =>'edit',
+        return view('nomination.index', [
+            'form_type' => 'edit',
             'edit' => $nomination,
             'invoices' => $invoice,
             'theme' => $theme,
@@ -174,11 +177,11 @@ if($request->member_name){
         ]);
         $invoice = Invoice::where('invoice', $request->invoice)->first();
         if ($invoice) {
-            if($invoice->trash == 1){
+            if ($invoice->trash == 1) {
                 return back()->with('warning', 'Your invoice is blocked. Please contact us to use this invoice again.');
-            }else if($invoice->available < 1){
+            } else if ($invoice->available < 1) {
                 return back()->with('danger', 'All Invoices are used');
-            }else{
+            } else {
                 $update_invoice = Invoice::where('invoice', $request->invoice)->first();
                 $update_date = Nomination::where('ukey', $id)->first();
                 $count = count(Nomination::where('invoice', $request->invoice)->get());
@@ -220,8 +223,8 @@ if($request->member_name){
         }
         if ($ukey) {
             $user_date = Nomination::where('ukey', $ukey)->first();
-            $all_member= json_decode($user_date->members);
-            $total_member= count($all_member)+1;
+            $all_member = json_decode($user_date->members);
+            $total_member = count($all_member) + 1;
             $invoice = Invoice::where('invoice', $user_date->invoice)->first();
             $theme = Theme::first();
             $order_details = DB::table('orders')
@@ -233,6 +236,7 @@ if($request->member_name){
                     'email' => $user_date->email,
                     'phone' => $user_date->phone,
                     'category' => $user_date->category,
+                    'course' => $user_date->course,
                     'themeamount' => $theme->amount,
                     'payment' => $user_date->payment,
                     'invoice' => $user_date->invoice,

@@ -20,6 +20,7 @@ class NominationSubmitMail extends Mailable implements ShouldQueue
     public $transaction_id;
     public $organization;
     public $designation;
+    public $course;
     public $amount;
     public $members_array;
 
@@ -36,6 +37,7 @@ class NominationSubmitMail extends Mailable implements ShouldQueue
         $this->phone = $order_information->phone;
         $this->organization = $order_information->organization;
         $this->designation = $order_information->designation;
+        $this->course = $order_information->course;
         $this->members_array = $order_information->members;
         $this->transaction_id = $order_details->transaction_id;
         $this->amount = $order_details->amount;

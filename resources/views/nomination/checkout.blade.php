@@ -125,7 +125,7 @@ $rate_3 = getenv('RATE_3');
                             <h2 class="text-center">Thank You <span class="text-muted text-capitalize">{{ $name }}</span> !</h2>
                         </div>
                         <div class="card-body">
-                            <h5 class="text-center text-muted">This Registration ID: <b class="text-dark">{{ $ukey }}</b> is paid successfully @if ($card_issuer != '')
+                            <h5 class="text-center text-muted">This Enrollment ID: <b class="text-dark">{{ $ukey }}</b> is paid successfully @if ($card_issuer != '')
                                 through
                                 @else
                                 by
@@ -194,11 +194,11 @@ $rate_3 = getenv('RATE_3');
                                             <h6>BDT {{ number_format($amount) ?? '' }}.00</h6>
                                         </td>
                                     </tr>
-                                </tbody>P
+                                </tbody>
                             </table>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 text-center"><a href="{{ route('form.index') }}" class="btn btn-md my-3 w-75 btn-primary">Submit Another Nomination</a></div>
+                            <div class="col-md-6 text-center"><a href="{{ route('form.index') }}" class="btn btn-md my-3 w-75 btn-primary">Another Enrollment </a></div>
                             <div class="col-md-6 text-center"><a href="{{$theme->url}}" class="btn btn-md my-3 w-75 btn-primary">Go To Home</a></div>
                         </div>
                         <div class="card-footer text-center">
@@ -211,7 +211,7 @@ $rate_3 = getenv('RATE_3');
                             <h2 class="text-center">Thank You <span class="text-muted text-capitalize">{{ $name }}</span> !</h2>
                         </div>
                         <div class="card-body">
-                            <h5 class="text-center text-muted">This Registration ID: <b class="text-dark">{{ $ukey }}</b> is already submitted by <span class="text-dark">Cash Payment</span>.</h5>
+                            <h5 class="text-center text-muted">This Enrollment ID: <b class="text-dark">{{ $ukey }}</b> is already submitted by <span class="text-dark">Cash Payment</span>.</h5>
                         </div>
                         <div>
                             <table style="box-shadow: none;border:1px solid white" class="table table-striped table-bordered">
@@ -252,7 +252,7 @@ $rate_3 = getenv('RATE_3');
                                     <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                                 </div>
                                 <div class="modal-body">
-                                    <h4 class="text-center text-danger">This is a paid event. Please ensure your payment is completed to secure your seat. Failure to pay will result in cancelation of your registration.</h4>
+                                    <h4 class="text-center text-danger">This is a paid course. Please complete your payment to secure your enrollment. If payment is not made, your registration will be canceled. Thank you!</h4>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Got it</button>
@@ -262,7 +262,7 @@ $rate_3 = getenv('RATE_3');
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="text-center"><b class="text-uppercase">Registration ID:</b> {{ $ukey }}
+                            <h4 class="text-center"><b class="text-uppercase">Enrollment ID:</b> {{ $ukey }}
                             </h4>
                             <h6 class="text-center">Pay Your Registration Fees</h6>
                         </div>
@@ -292,10 +292,10 @@ $rate_3 = getenv('RATE_3');
                                                     @endif
                                             </tr>
 
-                                            <tr>
+                                            <!-- <tr>
                                                 <td>Number Of Nomination</td>
                                                 <td class="text-end text-muted">{{ $total_member }}</td>
-                                            </tr>
+                                            </tr> -->
                                             <tr>
                                                 <td>Sub Total</td>
                                                 <td class="text-end text-muted">BDT {{ number_format($total_amount) }}</td>

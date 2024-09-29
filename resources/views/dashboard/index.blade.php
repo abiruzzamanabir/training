@@ -166,8 +166,9 @@ $theme = Theme::findOrFail(1);
                                     <th scope="col">Phone</th>
                                     <th scope="col">Designation</th>
                                     <th scope="col">Organization</th>
-                                    <th scope="col">Team Members</th>
+                                    <!-- <th scope="col">Team Members</th> -->
                                     <th scope="col">Address</th>
+                                    <th scope="col">Course</th>
                                     <th scope="col">Comment</th>
                                     <th scope="col">Payment Method</th>
                                     @if ($page == 'pv')
@@ -191,7 +192,7 @@ $theme = Theme::findOrFail(1);
                                     <td>{{ $item->phone }}</td>
                                     <td>{{ $item->designation }}</td>
                                     <td>{{ $item->organization }}</td>
-                                    <td>
+                                    <!-- <td>
                                         @php
                                         $members = json_decode($item->members, true);
                                         @endphp
@@ -213,10 +214,11 @@ $theme = Theme::findOrFail(1);
                                             No members available.
                                         </div>
                                         @endif
-                                    </td>
+                                    </td> -->
 
 
                                     <td>{{ $item->address }}</td>
+                                    <td>{{ $item->course }}</td>
                                     <td class="align-top">
                                         <form action="{{ route('dashboard.update', $item->id) }}" method="POST">
                                             @csrf

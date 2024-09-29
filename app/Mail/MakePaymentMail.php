@@ -19,6 +19,7 @@ class MakePaymentMail extends Mailable implements ShouldQueue
     public $email;
     public $phone;
     public $organization;
+    public $course;
     public $all_members;
 
 
@@ -34,6 +35,7 @@ class MakePaymentMail extends Mailable implements ShouldQueue
         $this->phone = $user_data['phone'];
         $this->ukey = $user_data['ukey'];
         $this->organization = $user_data['organization'];
+        $this->course = $user_data['course'];
         $this->all_members = $user_data['all_members'];
     }
 
@@ -45,7 +47,7 @@ class MakePaymentMail extends Mailable implements ShouldQueue
     public function envelope()
     {
         return new Envelope(
-            subject: 'Secure Your Registration',
+            subject: 'Secure Your Enrollment',
         );
     }
 

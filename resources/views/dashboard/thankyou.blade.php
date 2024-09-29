@@ -125,7 +125,7 @@
                                     class="text-muted text-capitalize">{{ $name }}</span> !</h2>
                         </div>
                         <div class="card-body">
-                            <h5 class="text-center text-muted">This Registration  ID: <b
+                            <h5 class="text-center text-muted">This  Enrollment ID: <b
                                     class="text-dark">{{ $ukey }}</b> is paid successfully @if ($card_issuer != '')
                                     through
                                 @else
@@ -200,7 +200,7 @@
                             </table>
                             <div class="row">
                                  <div class="col-md-6 text-center"><a href="{{ route('form.index') }}"
-                                        class="btn btn-md my-3 w-75 btn-primary">Submit Another Nomination</a></div>
+                                        class="btn btn-md my-3 w-75 btn-primary">Another Enrollment</a></div>
                                 <div class="col-md-6 text-center"><a href="{{$theme->url}}"
                                         class="btn btn-md my-3 w-75 btn-primary">Go To Home</a></div>
                             </div>

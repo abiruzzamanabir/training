@@ -201,7 +201,7 @@ class SslCommerzPaymentController extends Controller
             ->select('transaction_id', 'status', 'currency', 'amount', 'tran_date')->orderBy('id', 'desc')->first();
         $order_information = DB::table('nominations')
             ->where('ukey', $tran_id)
-            ->select('id', 'created_at', 'name', 'email', 'phone', 'ukey', 'address','designation', 'organization', 'members')->first();
+            ->select('id', 'created_at', 'name', 'email', 'phone', 'ukey', 'address', 'designation', 'organization', 'course', 'members')->first();
 
         // Assuming $members_data is your JSON string
         $members_data = $order_information->members;
@@ -252,6 +252,7 @@ class SslCommerzPaymentController extends Controller
                     'designation' => $order_information->designation,
                     'others_email' => $email_addresses,
                     'phone' => $order_information->phone,
+                    'course' => $order_information->course,
                     'member_count' => $member_count,
                     'member_countt' => $member_count,
                     'members_array' => $members_array,

@@ -265,15 +265,16 @@ if ($member_count <= 3) {
                             <td style="padding: 20px 0">
                                 <p>Hello <strong>{{ $name }}</strong>,</p>
                                 <p>
-                                    We have received your registration information from <b>{{ $organization }}</b> for <b>{{ Config::get('app.name') }}</b> successfully. To confirm your registration please make the registration payment of
-                                    <b>BDT {{number_format($total)}}</b> using the following link.
+                                    We have successfully received your enrollment information from <b>{{ $organization }}</b> for the course <b>{{ $course }}</b> at <b>{{ Config::get('app.name') }}</b>. To confirm your enrollment, please complete the payment of
+                                    <b>BDT {{ number_format($total) }}</b> using the link below.
                                 </p>
                                 <a href="{{ url('/form/hosted', $ukey) }}" class="button">Make Payment</a>
                                 <p>
-                                    If you have any concerns, please do not hesitate to contact us.
+                                    If you have any questions or need assistance, please feel free to reach out to us.
                                 </p>
                                 <p>Warm regards,<br /><strong>Team {{ Config::get('app.name') }}</strong></p>
                             </td>
+
                         </tr>
                     </table>
                 </div>

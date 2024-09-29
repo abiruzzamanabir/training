@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('designation');
             $table->string('organization');
             $table->string('address');
+            $table->string('course');
             $table->string('confirmLinkSend')->default(0);
             $table->longText('members');
             $table->string('comment')->nullable();

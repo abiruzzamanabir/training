@@ -133,7 +133,7 @@ $rate_3 = getenv('RATE_3');
                         <form action="{{ route('form.store') }}" method="POST" class="was-validated">
                             @csrf
                             <u>
-                                <h5 class="text-center text-uppercase">Secure Entry Pass</h5>
+                                <h5 class="text-center text-uppercase">Enroll Course</h5>
                             </u>
                             <div class="border p-3 shadow my-3">
                                 <div class="mb-2">
@@ -185,6 +185,23 @@ $rate_3 = getenv('RATE_3');
                                         value="{{ old('address') }}" required>
                                     <div class="invalid-feedback text-uppercase">Enter Your Address</div>
                                 </div>
+                                <div class="mb-2">
+                                    <label for="courseCategory" class="form-label">
+                                        <b>Select Course Category <span class="text-danger">*</span></b>
+                                    </label>
+                                    <select name="course" class="form-control" required>
+                                        <option value="" disabled selected>Select a category</option>
+                                        <option value="AI UNLISHED - TRANSFORMING PROFESSIONALS
+                                            FOR THE DIGITAL AGE">AI UNLISHED - TRANSFORMING PROFESSIONALS
+                                            FOR THE DIGITAL AGE</option>
+                                        <!-- <optgroup label="Arts">
+            <option value="literature">Literature</option>
+            <option value="history">History</option>
+        </optgroup> -->
+                                    </select>
+                                    <div class="invalid-feedback text-uppercase">Select a Course Category</div>
+                                </div>
+
                             </div>
                             <!-- <u>
                                 <h5 class="text-center text-uppercase">Team Member</h5>

@@ -166,6 +166,7 @@ class DashboardController extends Controller
             'name' => $order_information->name,
             'designation' => $order_information->designation,
             'email' => $order_information->email,
+            'course' => $order_information->course,
             'others_email' => $email_addresses,
             'member_count' => $member_count,
             'member_countt' => $member_count,

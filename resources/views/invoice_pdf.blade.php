@@ -238,7 +238,7 @@ $total = $amount + $vat;
             </thead>
             <tbody>
                 <tr align="center">
-                    <td><b>"{{ Config::get('app.name') }} {{ now()->year }}"</b><br>Registration Fee</td>
+                    <td><b>"{{ $course }} {{ now()->year }}"</b><br>Enrollment Fee</td>
                     <td>{{$member_count}}</td>
                     @php
                     $rate_2 = getenv('RATE_2');

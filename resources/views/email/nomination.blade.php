@@ -247,49 +247,19 @@ if ($member_countt <= 3) {
                                 <p>Hello <strong>{{ $name }}</strong>,</p>
                                 <p>
                                     We have received your payment of <b>{{ number_format($total) }}</b> Taka from
-                                    <b>{{ $organization }}</b> as the registration fee for <b>{{ Config::get('app.name') }}</b> successfully @if ($card_issuer != '')
+                                    <b>{{ $organization }}</b> as the enrollment fee for the course <b>{{ $course }}</b> at <b>{{ Config::get('app.name') }}</b> successfully @if ($card_issuer != '')
                                     through <b>{{ $card_issuer }}</b>
                                     @else
                                     by <b>online payment</b>
-                                    @endif.
-                                    Your registration id is <b>{{ $transaction_id }}.</b>
+                                    @endif. Your enrollment ID is <b>{{ $transaction_id }}</b>.
                                 </p>
-                                @if (count($members_array) > 0)
-                                <table width="100%">
-                                    <thead>
-                                        <tr>
-                                            <th style="border: 1px solid black; padding: 8px;">Name</th>
-                                            <th style="border: 1px solid black; padding: 8px">Designation</th>
-                                            <th style="border: 1px solid black; padding: 8px">Organizaion</th>
-                                            <th style="border: 1px solid black; padding: 8px">Contact</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td style="border: 1px solid black; padding: 8px">{{ $name }}</td>
-                                            <td style="border: 1px solid black; padding: 8px">{{ $designation }}</td>
-                                            <td style="border: 1px solid black; padding: 8px">{{ $organization }}</td>
-                                            <td style="border: 1px solid black; padding: 8px">{{ $phone }}</td>
-                                        </tr>
-                                        @foreach ($members_array as $member)
-                                        <tr>
-                                            <td style="border: 1px solid black; padding: 8px">{{ $member->member_name }}</td>
-                                            <td style="border: 1px solid black; padding: 8px">{{ $member->member_designation }}</td>
-                                            <td style="border: 1px solid black; padding: 8px">{{ $member->member_organization }}</td>
-                                            <td style="border: 1px solid black; padding: 8px">{{ $member->member_contact }}</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                @endif
-
 
                                 <p>
-                                    If you have any concerns, please do not hesitate to
-                                    contact us. We are always happy to help.
+                                    If you have any concerns, please do not hesitate to contact us. We are always happy to help.
                                 </p>
-                                <p>Best regards,<br /><strong>Team {{Config::get('app.name')}}</strong></p>
+                                <p>Best regards,<br /><strong>Team {{ Config::get('app.name') }}</strong></p>
                             </td>
+
                         </tr>
                     </table>
                 </div>
